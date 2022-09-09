@@ -21,11 +21,9 @@
   "plugins": ["react", "react-hooks", "jsx-a11y", "@typescript-eslint"],
   "rules": {
     "no-plusplus": ["error", { "allowForLoopAfterthoughts": true }],
-    // js版的 no-unused-vars, no-shadow 和ts冲突，关闭js版检查打开ts版检查。
-    "no-unused-vars": "off",
-    "@typescript-eslint/no-unused-vars": "error",
+    //--- 关闭 ts 冲突的配置 ---//
     "no-shadow": "off",
-    "@typescript-eslint/no-shadow": "error",
+    //--- END 关闭 ts 冲突的配置 --//
     // 支持 Better Comments 插件的注释标识(! * ? //)
     "spaced-comment": ["error", "always", { "markers": ["!", "*", "?", "//"] }]
   },
