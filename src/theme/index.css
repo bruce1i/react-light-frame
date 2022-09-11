@@ -1,0 +1,9 @@
+/* css variables */
+@import "color.css";
+@import "layout.css";
+
+/* css reset */
+body {
+  margin: 0;
+  padding: 0;
+}

@@ -1,0 +1,29 @@
+.main {
+  // Layout(margin, padding, height, width, display, flex...) > Text > Appearance(color, border) > Ohter
+  height: 100vh;
+  display: flex;
+  align-items: stretch;
+
+  .header {
+    width: var(--rlf-header-width);
+    background-color: var(--rlf-header-bg-color);
+    color: var(--rlf-header-font-color);
+  }
+
+  .sidebar {
+    width: var(--rlf-sidebar-width);
+    flex-shrink: 0;
+    background-color: var(--rlf-section-bg-color);
+    border-right: solid 1px var(--rlf-section-border-color);
+    border-left: solid 1px var(--rlf-section-border-color);
+    overflow-x: hidden;
+    overflow-y: auto;
+  }
+
+  .body {
+    padding: 5px;
+    min-width: var(--rlf-body-min-width);
+    flex-grow: 1;
+    overflow: auto;
+  }
+}

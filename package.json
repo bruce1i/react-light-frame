@@ -5,13 +5,16 @@
   "source": "src/index.html",
   "scripts": {
     "start": "parcel --open",
+    "build": "npm run clean && parcel build --no-cache",
+    "build:test": "npm run clean && cross-env NODE_ENV=test parcel build --no-cache",
+    "debug-server": "http-server ./dist -o -a localhost --proxy http://localhost:8080?",
     "test": "echo \"Error: no test specified\" && exit 1",
     "lint": "eslint --ext .ts,.tsx ./src",
     "lint:fix": "eslint --fix --ext .ts,.tsx ./src",
     "format": "prettier --check ./src",
     "format:fix": "prettier --write ./src",
     "prepare": "husky install",
-    "clean-dist": "rimraf ./dist"
+    "clean": "rimraf ./dist"
   },
   "alias": {
     "@/*": "./src/$1"
@@ -38,8 +41,10 @@
     "react-router-dom": "^6.3.0"
   },
   "devDependencies": {
+    "@parcel/transformer-sass": "^2.7.0",
     "@types/react": "^18.0.18",
     "@types/react-dom": "^18.0.6",
+    "@types/react-helmet": "^6.1.5",
     "@typescript-eslint/eslint-plugin": "^5.36.2",
     "@typescript-eslint/parser": "^5.36.2",
     "cross-env": "^7.0.3",
