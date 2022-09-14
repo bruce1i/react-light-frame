@@ -15,7 +15,7 @@
 
   // hover
   &:hover {
-    background-color: #a264e6;
+    background-color: #e4cefb;
     border-radius: 2px;
   }
   &.disable_hover {
@@ -26,15 +26,29 @@
 
   // active
   &.active {
+    --active-indicator-width: 4px;
+
+    @keyframes activeIndicator {
+      from {
+        width: 100%;
+        opacity: 0.3;
+      }
+      to {
+        width: var(--active-indicator-width);
+        opacity: 1;
+      }
+    }
+
     &::before {
       content: "";
       position: absolute;
       top: 0;
       left: 0;
       bottom: 0;
-      width: 5px;
+      width: var(--active-indicator-width);
       // background-color: #5c4084;
       background-color: #a264e6;
+      animation: activeIndicator 600ms;
     }
   }
 
