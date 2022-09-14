@@ -12,9 +12,10 @@ const appRoutes: RouteObject[] = [
       {
         path: "demo",
         children: [
-          { index: true, element: <Navigate to="home" replace /> },
-          { path: "home", element: "Home" },
+          { index: true, element: "Home" },
           { path: "about", element: "About" },
+          { path: "setting", element: "Setting" },
+          { path: "puzzle", element: "Puzzle" },
         ],
       },
     ],

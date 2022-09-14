@@ -1,0 +1,46 @@
+.main {
+  --icon-width-height: 32px;
+
+  position: relative;
+  margin: 0;
+  padding: 0;
+  width: 100%;
+  height: var(--rlf-menu-width);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  background-color: transparent;
+  border: none;
+  cursor: pointer;
+
+  // hover
+  &:hover {
+    background-color: #a264e6;
+    border-radius: 2px;
+  }
+  &.disable_hover {
+    background-color: transparent;
+    border-radius: 0;
+    cursor: default;
+  }
+
+  // active
+  &.active {
+    &::before {
+      content: "";
+      position: absolute;
+      top: 0;
+      left: 0;
+      bottom: 0;
+      width: 5px;
+      // background-color: #5c4084;
+      background-color: #a264e6;
+    }
+  }
+
+  // other
+  > * {
+    width: var(--icon-width-height);
+    height: var(--icon-width-height);
+  }
+}

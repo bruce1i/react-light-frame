@@ -4,10 +4,16 @@
   display: flex;
   align-items: stretch;
 
-  .header {
-    width: var(--rlf-header-width);
-    background-color: var(--rlf-header-bg-color);
-    color: var(--rlf-header-font-color);
+  .menu {
+    width: var(--rlf-menu-width);
+    display: flex;
+    flex-shrink: 0;
+    flex-direction: column;
+    justify-content: space-between;
+    align-items: stretch;
+    color: var(--rlf-menu-font-color);
+    background-color: var(--rlf-menu-bg-color);
+    border-right: solid 1px var(--rlf-section-border-color);
   }
 
   .sidebar {
@@ -15,14 +21,17 @@
     flex-shrink: 0;
     background-color: var(--rlf-section-bg-color);
     border-right: solid 1px var(--rlf-section-border-color);
-    border-left: solid 1px var(--rlf-section-border-color);
     overflow-x: hidden;
     overflow-y: auto;
+
+    &.hide {
+      display: none;
+    }
   }
 
-  .body {
+  .content {
     padding: 5px;
-    min-width: var(--rlf-body-min-width);
+    min-width: var(--rlf-content-min-width);
     flex-grow: 1;
     overflow: auto;
   }
