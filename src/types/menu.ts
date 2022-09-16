@@ -13,7 +13,7 @@ export interface IButtonMenu {
 
 export interface INavMenu {
   kind: "nav";
-  icon: JSX.Element;
+  icons: [JSX.Element, JSX.Element?];
   name?: string;
   to: string;
   pattern?: string;

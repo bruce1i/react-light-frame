@@ -34,8 +34,9 @@ function ButtonMenu({ icon, name = "", onClick }: IButtonMenu) {
   );
 }
 
-function NavMenu({ icon, name = "", to, pattern, component }: INavMenu) {
+function NavMenu({ icons, name = "", to, pattern, component }: INavMenu) {
   const [showMenuSidebar, setShowMenuSidebar] = useAtom(showMenuSidebarAtom);
+  const [defaultIcon, activeIcon] = icons;
   const isActive = useIsActive(pattern ?? to);
   const navigate = useNavigate();
   const hasSidebar = component !== undefined;
@@ -60,7 +61,7 @@ function NavMenu({ icon, name = "", to, pattern, component }: INavMenu) {
         })}
         onClick={handleClick}
       >
-        {icon}
+        {isActive ? activeIcon ?? defaultIcon : defaultIcon}
       </button>
     </Tippy>
   );

@@ -1,10 +1,10 @@
-import { IoSettingsSharp } from "react-icons/io5";
+import { IoSettingsOutline, IoSettings } from "react-icons/io5";
 
 import type { INavMenu } from "@/types/menu";
 
 const setting: INavMenu = {
   kind: "nav",
-  icon: <IoSettingsSharp />,
+  icons: [<IoSettingsOutline key="default" />, <IoSettings key="active" />],
   name: "setting",
   to: "/demo/setting",
 };

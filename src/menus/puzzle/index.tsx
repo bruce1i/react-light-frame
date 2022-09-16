@@ -1,4 +1,4 @@
-import { IoExtensionPuzzle } from "react-icons/io5";
+import { IoExtensionPuzzleOutline, IoExtensionPuzzle } from "react-icons/io5";
 
 import type { INavMenu } from "@/types/menu";
 
@@ -8,7 +8,7 @@ function Sidebar() {
 
 const puzzle: INavMenu = {
   kind: "nav",
-  icon: <IoExtensionPuzzle />,
+  icons: [<IoExtensionPuzzleOutline key="default" />, <IoExtensionPuzzle key="active" />],
   name: "puzzle",
   to: "/demo/puzzle",
   component: <Sidebar />,
