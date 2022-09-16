@@ -1,5 +1,6 @@
 :root {
   --rlf-menu-width: 50px;
+  --rlf-menu-indicator-width: 4px;
   --rlf-sidebar-width: 223px;
   --rlf-content-min-width: 900px;
 }

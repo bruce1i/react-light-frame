@@ -12,6 +12,7 @@
   background-color: transparent;
   border: none;
   cursor: pointer;
+  overflow: hidden;
 
   // hover
   &:hover {
@@ -25,30 +26,38 @@
   }
 
   // active
-  &.active {
-    --active-indicator-width: 4px;
-
-    @keyframes activeIndicator {
-      from {
-        width: 100%;
-        opacity: 0.3;
-      }
-      to {
-        width: var(--active-indicator-width);
-        opacity: 1;
-      }
+  @keyframes menuIndicatorKF {
+    from {
+      width: 100%;
+      opacity: 0.3;
     }
-
+    to {
+      width: var(--rlf-menu-indicator-width);
+      opacity: 1;
+    }
+  }
+  &.active {
     &::before {
       content: "";
       position: absolute;
       top: 0;
       left: 0;
       bottom: 0;
-      width: var(--active-indicator-width);
-      // background-color: #5c4084;
-      background-color: #a264e6;
-      animation: activeIndicator 600ms;
+      width: var(--rlf-menu-indicator-width);
+      background-color: #9444ee;
+      animation: menuIndicatorKF 600ms;
+    }
+  }
+  &.sidebar_hidden_indicator {
+    &::after {
+      content: "";
+      position: absolute;
+      top: 0;
+      left: 4;
+      bottom: 0;
+      width: var(--rlf-menu-indicator-width);
+      background-color: #c088ff;
+      animation: menuIndicatorKF 600ms;
     }
   }
 

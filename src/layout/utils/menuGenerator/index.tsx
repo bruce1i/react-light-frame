@@ -39,6 +39,7 @@ function NavMenu({ icon, name = "", to, pattern, component }: INavMenu) {
   const isActive = useIsActive(pattern ?? to);
   const navigate = useNavigate();
   const hasSidebar = component !== undefined;
+  const sidebarHiddenIndicator = isActive && hasSidebar && !showMenuSidebar;
 
   const handleClick = () => {
     if (isActive) {
@@ -52,7 +53,13 @@ function NavMenu({ icon, name = "", to, pattern, component }: INavMenu) {
 
   return (
     <Tippy content={name} placement="right" disabled={name === ""}>
-      <button className={cx(styles.main, { [styles.active]: isActive })} onClick={handleClick}>
+      <button
+        className={cx(styles.main, {
+          [styles.active]: isActive,
+          [styles.sidebar_hidden_indicator]: sidebarHiddenIndicator,
+        })}
+        onClick={handleClick}
+      >
         {icon}
       </button>
     </Tippy>
