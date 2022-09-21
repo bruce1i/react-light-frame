@@ -1,10 +1,10 @@
-import { BrowserRouter } from "react-router-dom";
-import { QueryClient, QueryClientProvider } from "@tanstack/react-query";
-
 import "tippy.js/dist/tippy.css";
 import "./theme/index.css";
 
-import AppRoutes from "./App.routes";
+import { RouterProvider, createBrowserRouter } from "react-router-dom";
+import { QueryClient, QueryClientProvider } from "@tanstack/react-query";
+
+import { routes } from "./App.routes";
 
 const queryClient = new QueryClient({
   defaultOptions: {
@@ -14,12 +14,12 @@ const queryClient = new QueryClient({
   },
 });
 
+const router = createBrowserRouter(routes);
+
 function App() {
   return (
     <QueryClientProvider client={queryClient}>
-      <BrowserRouter>
-        <AppRoutes />
-      </BrowserRouter>
+      <RouterProvider router={router} />
     </QueryClientProvider>
   );
 }

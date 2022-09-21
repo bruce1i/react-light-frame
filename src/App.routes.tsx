@@ -1,9 +1,9 @@
-import { useRoutes, Navigate } from "react-router-dom";
+import { Navigate } from "react-router-dom";
 import type { RouteObject } from "react-router-dom";
 
 import Layout from "@/layout";
 
-const appRoutes: RouteObject[] = [
+export const routes: RouteObject[] = [
   {
     path: "/",
     element: <Layout />,
@@ -24,9 +24,3 @@ const appRoutes: RouteObject[] = [
   { path: "/404", element: "404" },
   { path: "*", element: <Navigate to="/404" replace /> },
 ];
-
-function AppRoutes() {
-  return useRoutes(appRoutes);
-}
-
-export default AppRoutes;
