@@ -24,10 +24,12 @@ function IconMenu({ icon, name = "" }: IIconMenu) {
   );
 }
 
-function ButtonMenu({ icon, name = "", onClick }: IButtonMenu) {
+function ButtonMenu({ icon, name = "", useClick }: IButtonMenu) {
+  const click = useClick();
+
   return (
     <Tippy content={name} placement="right" disabled={name === ""}>
-      <button className={styles.main} onClick={onClick}>
+      <button className={styles.main} onClick={click}>
         {icon}
       </button>
     </Tippy>

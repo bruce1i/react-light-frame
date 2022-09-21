@@ -1,3 +1,5 @@
+import type { EmptyFunc, EmptyFuncReturn } from "./func";
+
 export interface IIconMenu {
   kind: "icon";
   icon: JSX.Element;
@@ -8,7 +10,7 @@ export interface IButtonMenu {
   kind: "button";
   icon: JSX.Element;
   name?: string;
-  onClick: () => void;
+  useClick: EmptyFuncReturn<EmptyFunc>;
 }
 
 export interface INavMenu {

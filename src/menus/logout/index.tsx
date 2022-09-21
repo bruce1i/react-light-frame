@@ -6,7 +6,7 @@ const logout: IButtonMenu = {
   kind: "button",
   name: "logout",
   icon: <IoLogOutOutline />,
-  onClick: () => {
+  useClick: () => () => {
     alert("logout");
   },
 };

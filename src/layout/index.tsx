@@ -3,22 +3,24 @@ import { Helmet } from "react-helmet";
 import { useAtom } from "jotai";
 import cx from "classnames";
 
-import { showMenuSidebarAtom, themeModeAtom } from "@/state";
+import { showMenuSidebarAtom, themeModeDarkAtom } from "@/state";
 import logoMenu from "@/menus/logo";
 import logoutMenu from "@/menus/logout";
 import settingMenu from "@/menus/setting";
 import homeMenu from "@/menus/home";
 import puzzleMenu from "@/menus/puzzle";
+import dark from "@/menus/dark";
 import type { TMenu } from "@/types/menu";
+import { objectElseEmpty as oee } from "@/utils/helper";
 
 import { menuGenerator, useMenuSidebar } from "./utils/menuGenerator";
 import * as styles from "./index.module.scss";
 
 function Layout() {
-  const [themeMode] = useAtom(themeModeAtom);
+  const [themeModeDark] = useAtom(themeModeDarkAtom);
   const [showMenuSidebar] = useAtom(showMenuSidebarAtom);
   const topMenus: TMenu[] = [logoMenu, homeMenu, puzzleMenu];
-  const bottomMenus: TMenu[] = [settingMenu, logoutMenu];
+  const bottomMenus: TMenu[] = [dark, settingMenu, logoutMenu];
   const menuSidebar = useMenuSidebar([...topMenus, ...bottomMenus]);
 
   const renderMenus = (menus: TMenu[]) => {
@@ -29,7 +31,7 @@ function Layout() {
     <div className={styles.main}>
       <Helmet>
         <title>Demo</title>
-        <body {...{ [`theme-mode-${themeMode}`]: "" }} />
+        <body {...oee("theme-mode-dark", themeModeDark)} />
       </Helmet>
 
       <div className={styles.menu}>
