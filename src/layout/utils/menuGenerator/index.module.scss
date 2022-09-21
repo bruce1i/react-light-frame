@@ -9,6 +9,7 @@
   display: flex;
   align-items: center;
   justify-content: center;
+  color: var(--rlf-menu-font-color);
   background-color: transparent;
   border: none;
   cursor: pointer;
@@ -19,6 +20,10 @@
     background-color: #e4cefb;
     border-radius: 2px;
   }
+  body[theme-mode-dark] &:hover {
+    background-color: #46216f;
+  }
+
   &.disable_hover {
     background-color: transparent;
     border-radius: 0;

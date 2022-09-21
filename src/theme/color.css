@@ -1,8 +1,17 @@
 :root {
-  /* --rlf-menu-bg-color: rgb(92, 64, 132); */
-  --rlf-menu-bg-color: rgb(233, 232, 243);
-  /* --rlf-menu-font-color: white; */
-  --rlf-menu-font-color: rgb(92, 64, 132);
-  --rlf-section-bg-color: rgb(248, 250, 252);
-  --rlf-section-border-color: rgb(229, 231, 235);
+  --rlf-color: black;
+  --rlf-menu-bg-color: #e9e8f3;
+  --rlf-menu-font-color: #1e142b;
+  --rlf-section-bg-color: #f8fafc;
+  --rlf-section-border-color: #e5e7eb;
+  --rlf-content-bg-color: white;
+}
+
+body[theme-mode-dark] {
+  --rlf-color: #e9e8f3;
+  --rlf-menu-bg-color: #1e142b;
+  --rlf-menu-font-color: #e9e8f3;
+  --rlf-section-bg-color: #33234a;
+  --rlf-section-border-color: black;
+  --rlf-content-bg-color: #422d60;
 }

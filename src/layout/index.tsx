@@ -3,7 +3,7 @@ import { Helmet } from "react-helmet";
 import { useAtom } from "jotai";
 import cx from "classnames";
 
-import { showMenuSidebarAtom } from "@/state";
+import { showMenuSidebarAtom, themeModeAtom } from "@/state";
 import logoMenu from "@/menus/logo";
 import logoutMenu from "@/menus/logout";
 import settingMenu from "@/menus/setting";
@@ -15,6 +15,7 @@ import { menuGenerator, useMenuSidebar } from "./utils/menuGenerator";
 import * as styles from "./index.module.scss";
 
 function Layout() {
+  const [themeMode] = useAtom(themeModeAtom);
   const [showMenuSidebar] = useAtom(showMenuSidebarAtom);
   const topMenus: TMenu[] = [logoMenu, homeMenu, puzzleMenu];
   const bottomMenus: TMenu[] = [settingMenu, logoutMenu];
@@ -28,6 +29,7 @@ function Layout() {
     <div className={styles.main}>
       <Helmet>
         <title>Demo</title>
+        <body {...{ [`theme-mode-${themeMode}`]: "" }} />
       </Helmet>
 
       <div className={styles.menu}>

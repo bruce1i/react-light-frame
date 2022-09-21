@@ -19,6 +19,7 @@
   .sidebar {
     width: var(--rlf-sidebar-width);
     flex-shrink: 0;
+    color: var(--rlf-color);
     background-color: var(--rlf-section-bg-color);
     border-right: solid 1px var(--rlf-section-border-color);
     overflow-x: hidden;
@@ -33,6 +34,8 @@
     padding: 5px;
     min-width: var(--rlf-content-min-width);
     flex-grow: 1;
+    color: var(--rlf-color);
+    background-color: var(--rlf-content-bg-color);
     overflow: auto;
   }
 }
