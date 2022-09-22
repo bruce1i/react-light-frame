@@ -1,6 +1,6 @@
 import { IoLogOutOutline } from "react-icons/io5";
 
-import type { IButtonMenu } from "@/types/menu";
+import type { IButtonMenu } from "@/types";
 
 const logout: IButtonMenu = {
   kind: "button",

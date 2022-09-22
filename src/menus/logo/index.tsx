@@ -1,4 +1,4 @@
-import type { IIconMenu } from "@/types/menu";
+import type { IIconMenu } from "@/types";
 
 import logoPNG from "@/assets/logo.png";
 

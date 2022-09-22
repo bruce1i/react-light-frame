@@ -10,7 +10,7 @@ import settingMenu from "@/menus/setting";
 import homeMenu from "@/menus/home";
 import puzzleMenu from "@/menus/puzzle";
 import dark from "@/menus/dark";
-import type { TMenu } from "@/types/menu";
+import type { TMenu } from "@/types";
 import { objectElseEmpty as oee } from "@/utils";
 
 import { menuGenerator, useMenuSidebar } from "./utils/menuGenerator";

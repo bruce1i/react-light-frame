@@ -3,7 +3,7 @@ import { useAtom } from "jotai";
 import Tippy from "@tippyjs/react";
 import cx from "classnames";
 
-import type { TMenu, IIconMenu, IButtonMenu, INavMenu } from "@/types/menu";
+import type { TMenu, IIconMenu, IButtonMenu, INavMenu } from "@/types";
 import { showMenuSidebarAtom } from "@/state";
 
 import * as styles from "./index.module.scss";

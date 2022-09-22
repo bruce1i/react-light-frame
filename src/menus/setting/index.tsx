@@ -1,6 +1,6 @@
 import { IoSettingsOutline, IoSettings } from "react-icons/io5";
 
-import type { INavMenu } from "@/types/menu";
+import type { INavMenu } from "@/types";
 
 const setting: INavMenu = {
   kind: "nav",

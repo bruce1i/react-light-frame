@@ -1,7 +1,7 @@
 import { useAtom } from "jotai";
 import { RiLightbulbLine, RiLightbulbFlashLine } from "react-icons/ri";
 
-import type { IButtonMenu } from "@/types/menu";
+import type { IButtonMenu } from "@/types";
 import { themeModeDarkAtom } from "@/state";
 
 function Icon() {

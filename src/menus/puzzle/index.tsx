@@ -1,6 +1,6 @@
 import { IoExtensionPuzzleOutline, IoExtensionPuzzle } from "react-icons/io5";
 
-import type { INavMenu } from "@/types/menu";
+import type { INavMenu } from "@/types";
 
 function Sidebar() {
   return <div>Sidebar</div>;
