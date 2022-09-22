@@ -11,7 +11,7 @@ import homeMenu from "@/menus/home";
 import puzzleMenu from "@/menus/puzzle";
 import dark from "@/menus/dark";
 import type { TMenu } from "@/types/menu";
-import { objectElseEmpty as oee } from "@/utils/helper";
+import { objectElseEmpty as oee } from "@/utils";
 
 import { menuGenerator, useMenuSidebar } from "./utils/menuGenerator";
 import * as styles from "./index.module.scss";
