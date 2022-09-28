@@ -13,7 +13,7 @@ import dark from "@/menus/dark";
 import type { TMenu } from "@/types";
 import { objectElseEmpty as oee } from "@/utils";
 
-import { menuGenerator, useMenuSidebar } from "./utils/menuGenerator";
+import { menuGenerator, useMenuSidebar } from "./utils/menu-generator";
 import * as styles from "./index.module.scss";
 
 function Layout() {
