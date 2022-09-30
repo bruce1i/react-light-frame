@@ -6,7 +6,9 @@ const config: Config = {
   setupFilesAfterEnv: ["<rootDir>/tests/__setups__/jest-dom-setup.ts"],
   moduleNameMapper: {
     // mocks
-    "\\.(css|scss)$": "<rootDir>/tests/__mocks__/style-mock.ts",
+    "\\.(css|scss)$": "<rootDir>/tests/__mocks__/style-mock.cjs",
+    "\\.(jpg|jpeg|png|gif|eot|otf|webp|svg|ttf|woff|woff2|mp4|webm|wav|mp3|m4a|aac|oga)$":
+      "<rootDir>/tests/__mocks__/file-mock.ts",
     // alias
     "@/(.*)": "<rootDir>/src/$1",
   },

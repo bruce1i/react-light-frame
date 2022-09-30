@@ -19,7 +19,9 @@ function checkActive(pattern, pathname) {
 function IconMenu({ icon, name = "" }: IIconMenu) {
   return (
     <Tippy content={name} placement="right" disabled={name === ""}>
-      <div className={cx(styles.main, styles.disable_hover)}>{icon}</div>
+      <div data-testid="main" className={cx(styles.main, styles.disable_hover)}>
+        {icon}
+      </div>
     </Tippy>
   );
 }

@@ -12,5 +12,6 @@ test("generates an icon button", () => {
 
   render(menuGenerator(icon, 0));
 
+  expect(screen.getByTestId("main")).toHaveClass("main", "disable_hover");
   expect(screen.getByText("test-icon-el")).toBeInTheDocument();
 });
