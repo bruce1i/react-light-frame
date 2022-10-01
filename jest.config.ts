@@ -4,6 +4,7 @@ const config: Config = {
   preset: "ts-jest",
   testEnvironment: "jsdom",
   setupFilesAfterEnv: ["<rootDir>/tests/__setups__/jest-dom-setup.ts"],
+  snapshotResolver: "<rootDir>/tests/__others__/snapshot-resolver.ts",
   moduleNameMapper: {
     // mocks
     "\\.(css|scss)$": "<rootDir>/tests/__mocks__/style-mock.cjs",
