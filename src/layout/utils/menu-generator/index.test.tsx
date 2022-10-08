@@ -1,4 +1,5 @@
 import { render, screen } from "@testing-library/react";
+import userEvent from "@testing-library/user-event";
 
 import type { IIconMenu } from "@/types/menu";
 
@@ -18,5 +19,21 @@ describe("icon button", () => {
     expect(view).toMatchSnapshot();
   });
 
-  test.todo("can hover");
+  test("should show tooltip when hover", async () => {
+    const user = userEvent.setup();
+
+    const icon: IIconMenu = {
+      kind: "icon",
+      name: "test-name",
+      icon: <div>test-icon-el</div>,
+    };
+
+    render(menuGenerator(icon, 0));
+
+    expect(screen.queryByText("test-name")).not.toBeInTheDocument();
+
+    await user.hover(screen.getByTestId("main"));
+
+    expect(screen.getByText("test-name")).toBeInTheDocument();
+  });
 });
