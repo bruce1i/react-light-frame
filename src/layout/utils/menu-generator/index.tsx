@@ -31,7 +31,7 @@ function ButtonMenu({ icon, name = "", useClick }: IButtonMenu) {
 
   return (
     <Tippy content={name} placement="right" disabled={name === ""}>
-      <button className={styles.main} onClick={click}>
+      <button data-testid="main" className={styles.main} onClick={click}>
         {icon}
       </button>
     </Tippy>
