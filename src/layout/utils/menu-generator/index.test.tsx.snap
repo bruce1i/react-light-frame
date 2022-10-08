@@ -1,159 +1,92 @@
 // Jest Snapshot v1, https://goo.gl/fbAQLP
 
 exports[`button menu renders correctly 1`] = `
-{
-  "asFragment": [Function],
-  "baseElement": <body>
+<DocumentFragment>
+  <button
+    class="main"
+    data-testid="main"
+  >
     <div>
-      <button
-        class="main"
-        data-testid="main"
-      >
-        <div>
-          test-icon-el
-        </div>
-      </button>
+      test-icon-el
     </div>
-  </body>,
-  "container": <div>
-    <button
-      class="main"
-      data-testid="main"
-    >
-      <div>
-        test-icon-el
-      </div>
-    </button>
-  </div>,
-  "debug": [Function],
-  "findAllByAltText": [Function],
-  "findAllByDisplayValue": [Function],
-  "findAllByLabelText": [Function],
-  "findAllByPlaceholderText": [Function],
-  "findAllByRole": [Function],
-  "findAllByTestId": [Function],
-  "findAllByText": [Function],
-  "findAllByTitle": [Function],
-  "findByAltText": [Function],
-  "findByDisplayValue": [Function],
-  "findByLabelText": [Function],
-  "findByPlaceholderText": [Function],
-  "findByRole": [Function],
-  "findByTestId": [Function],
-  "findByText": [Function],
-  "findByTitle": [Function],
-  "getAllByAltText": [Function],
-  "getAllByDisplayValue": [Function],
-  "getAllByLabelText": [Function],
-  "getAllByPlaceholderText": [Function],
-  "getAllByRole": [Function],
-  "getAllByTestId": [Function],
-  "getAllByText": [Function],
-  "getAllByTitle": [Function],
-  "getByAltText": [Function],
-  "getByDisplayValue": [Function],
-  "getByLabelText": [Function],
-  "getByPlaceholderText": [Function],
-  "getByRole": [Function],
-  "getByTestId": [Function],
-  "getByText": [Function],
-  "getByTitle": [Function],
-  "queryAllByAltText": [Function],
-  "queryAllByDisplayValue": [Function],
-  "queryAllByLabelText": [Function],
-  "queryAllByPlaceholderText": [Function],
-  "queryAllByRole": [Function],
-  "queryAllByTestId": [Function],
-  "queryAllByText": [Function],
-  "queryAllByTitle": [Function],
-  "queryByAltText": [Function],
-  "queryByDisplayValue": [Function],
-  "queryByLabelText": [Function],
-  "queryByPlaceholderText": [Function],
-  "queryByRole": [Function],
-  "queryByTestId": [Function],
-  "queryByText": [Function],
-  "queryByTitle": [Function],
-  "rerender": [Function],
-  "unmount": [Function],
-}
+  </button>
+</DocumentFragment>
 `;
 
 exports[`icon menu renders correctly 1`] = `
-{
-  "asFragment": [Function],
-  "baseElement": <body>
+<DocumentFragment>
+  <div
+    class="main disable_hover"
+    data-testid="main"
+  >
     <div>
-      <div
-        class="main disable_hover"
-        data-testid="main"
-      >
-        <div>
-          test-icon-el
-        </div>
-      </div>
+      test-icon-el
     </div>
-  </body>,
-  "container": <div>
-    <div
-      class="main disable_hover"
-      data-testid="main"
-    >
-      <div>
-        test-icon-el
-      </div>
+  </div>
+</DocumentFragment>
+`;
+
+exports[`nav menu when menu is active matches by pattern 1`] = `
+<DocumentFragment>
+  <button
+    class="main active"
+    data-testid="main"
+  >
+    <div>
+      test-default-icon-el
     </div>
-  </div>,
-  "debug": [Function],
-  "findAllByAltText": [Function],
-  "findAllByDisplayValue": [Function],
-  "findAllByLabelText": [Function],
-  "findAllByPlaceholderText": [Function],
-  "findAllByRole": [Function],
-  "findAllByTestId": [Function],
-  "findAllByText": [Function],
-  "findAllByTitle": [Function],
-  "findByAltText": [Function],
-  "findByDisplayValue": [Function],
-  "findByLabelText": [Function],
-  "findByPlaceholderText": [Function],
-  "findByRole": [Function],
-  "findByTestId": [Function],
-  "findByText": [Function],
-  "findByTitle": [Function],
-  "getAllByAltText": [Function],
-  "getAllByDisplayValue": [Function],
-  "getAllByLabelText": [Function],
-  "getAllByPlaceholderText": [Function],
-  "getAllByRole": [Function],
-  "getAllByTestId": [Function],
-  "getAllByText": [Function],
-  "getAllByTitle": [Function],
-  "getByAltText": [Function],
-  "getByDisplayValue": [Function],
-  "getByLabelText": [Function],
-  "getByPlaceholderText": [Function],
-  "getByRole": [Function],
-  "getByTestId": [Function],
-  "getByText": [Function],
-  "getByTitle": [Function],
-  "queryAllByAltText": [Function],
-  "queryAllByDisplayValue": [Function],
-  "queryAllByLabelText": [Function],
-  "queryAllByPlaceholderText": [Function],
-  "queryAllByRole": [Function],
-  "queryAllByTestId": [Function],
-  "queryAllByText": [Function],
-  "queryAllByTitle": [Function],
-  "queryByAltText": [Function],
-  "queryByDisplayValue": [Function],
-  "queryByLabelText": [Function],
-  "queryByPlaceholderText": [Function],
-  "queryByRole": [Function],
-  "queryByTestId": [Function],
-  "queryByText": [Function],
-  "queryByTitle": [Function],
-  "rerender": [Function],
-  "unmount": [Function],
-}
+  </button>
+</DocumentFragment>
+`;
+
+exports[`nav menu when menu is active renders correctly 1`] = `
+<DocumentFragment>
+  <button
+    class="main active"
+    data-testid="main"
+  >
+    <div>
+      test-default-icon-el
+    </div>
+  </button>
+</DocumentFragment>
+`;
+
+exports[`nav menu when menu is active renders correctly with active icon 1`] = `
+<DocumentFragment>
+  <button
+    class="main active"
+    data-testid="main"
+  >
+    <div>
+      test-active-icon-el
+    </div>
+  </button>
+</DocumentFragment>
+`;
+
+exports[`nav menu when menu is active renders correctly with default icon 1`] = `
+<DocumentFragment>
+  <button
+    class="main active"
+    data-testid="main"
+  >
+    <div>
+      test-default-icon-el
+    </div>
+  </button>
+</DocumentFragment>
+`;
+
+exports[`nav menu when menu is not active renders correctly 1`] = `
+<DocumentFragment>
+  <button
+    class="main"
+    data-testid="main"
+  >
+    <div>
+      test-default-icon-el
+    </div>
+  </button>
+</DocumentFragment>
 `;

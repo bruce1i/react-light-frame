@@ -1,9 +1,23 @@
-import { render, screen } from "@testing-library/react";
-import userEvent from "@testing-library/user-event";
+import { render, renderSetup, renderWithRouter, screen } from "rlf-test-utils";
 
-import type { IIconMenu, IButtonMenu } from "@/types/menu";
+import type { IIconMenu, IButtonMenu, INavMenu } from "@/types/menu";
 
 import { menuGenerator } from "./index";
+
+const mockNavigate = jest.fn();
+
+jest.mock("react-router-dom", () => {
+  const originalModule = jest.requireActual("react-router-dom");
+
+  return {
+    ...originalModule,
+    useNavigate: () => mockNavigate,
+  };
+});
+
+beforeEach(() => {
+  mockNavigate.mockReset();
+});
 
 describe("icon menu", () => {
   test("renders correctly", () => {
@@ -12,22 +26,21 @@ describe("icon menu", () => {
       icon: <div>test-icon-el</div>,
     };
 
-    const view = render(menuGenerator(icon, 0));
+    const { asFragment } = render(menuGenerator(icon, 0));
 
     expect(screen.getByTestId("main")).toHaveClass("main", "disable_hover");
     expect(screen.getByText("test-icon-el")).toBeInTheDocument();
-    expect(view).toMatchSnapshot();
+    expect(asFragment()).toMatchSnapshot();
   });
 
   test("should show tooltip when hover", async () => {
-    const user = userEvent.setup();
     const icon: IIconMenu = {
       kind: "icon",
       name: "test-name",
       icon: <div>test-icon-el</div>,
     };
 
-    render(menuGenerator(icon, 0));
+    const { user } = renderSetup(menuGenerator(icon, 0));
 
     expect(screen.queryByText("test-name")).not.toBeInTheDocument();
 
@@ -46,14 +59,13 @@ describe("button menu", () => {
       useClick: () => mockClick,
     };
 
-    const view = render(menuGenerator(button, 0));
+    const { asFragment } = render(menuGenerator(button, 0));
 
     expect(mockClick.mock.calls.length).toBe(0);
-    expect(view).toMatchSnapshot();
+    expect(asFragment()).toMatchSnapshot();
   });
 
   test("should show tooltip when hover", async () => {
-    const user = userEvent.setup();
     const mockClick = jest.fn();
     const button: IButtonMenu = {
       kind: "button",
@@ -62,7 +74,7 @@ describe("button menu", () => {
       useClick: () => mockClick,
     };
 
-    render(menuGenerator(button, 0));
+    const { user } = renderSetup(menuGenerator(button, 0));
 
     expect(screen.queryByText("test-name")).not.toBeInTheDocument();
 
@@ -72,7 +84,6 @@ describe("button menu", () => {
   });
 
   test("can click", async () => {
-    const user = userEvent.setup();
     const mockClick = jest.fn();
     const button: IButtonMenu = {
       kind: "button",
@@ -80,9 +91,125 @@ describe("button menu", () => {
       useClick: () => mockClick,
     };
 
-    render(menuGenerator(button, 0));
+    const { user } = renderSetup(menuGenerator(button, 0));
     await user.click(screen.getByTestId("main"));
 
     expect(mockClick.mock.calls.length).toBe(1);
+  });
+});
+
+describe("nav menu", () => {
+  test("should show tooltip when hover", async () => {
+    const nav: INavMenu = {
+      kind: "nav",
+      name: "test-name",
+      icons: [<div key="default">test-icon-el</div>],
+      to: "test-url",
+    };
+
+    const { user } = renderWithRouter(menuGenerator(nav, 0));
+
+    expect(screen.queryByText("test-name")).not.toBeInTheDocument();
+
+    await user.hover(screen.getByTestId("main"));
+
+    expect(screen.getByText("test-name")).toBeInTheDocument();
+  });
+
+  describe("when menu is not active", () => {
+    test("renders correctly", async () => {
+      const nav: INavMenu = {
+        kind: "nav",
+        icons: [<div key="default">test-default-icon-el</div>],
+        to: "/test-url",
+      };
+
+      const { asFragment } = renderWithRouter(menuGenerator(nav, 0));
+
+      expect(screen.getByTestId("main")).not.toHaveClass("active");
+      expect(screen.getByTestId("main")).not.toHaveClass("sidebar_hidden_indicator");
+      expect(screen.getByText("test-default-icon-el")).toBeInTheDocument();
+      expect(asFragment()).toMatchSnapshot();
+    });
+
+    test("can click", async () => {
+      const nav: INavMenu = {
+        kind: "nav",
+        icons: [<div key="default">test-default-icon-el</div>],
+        to: "/test-url",
+      };
+
+      const { user } = renderWithRouter(menuGenerator(nav, 0));
+
+      await user.click(screen.getByTestId("main"));
+
+      expect(mockNavigate.mock.calls.length).toBe(1);
+      expect(mockNavigate.mock.calls[0][0]).toBe("/test-url");
+    });
+  });
+
+  describe("when menu is active", () => {
+    test("renders correctly with default icon", async () => {
+      const nav: INavMenu = {
+        kind: "nav",
+        icons: [<div key="default">test-default-icon-el</div>],
+        to: "/test-url",
+      };
+
+      const { asFragment } = renderWithRouter(menuGenerator(nav, 0), { route: "/test-url" });
+
+      expect(screen.getByTestId("main")).toHaveClass("active");
+      expect(screen.getByTestId("main")).not.toHaveClass("sidebar_hidden_indicator");
+      expect(screen.getByText("test-default-icon-el")).toBeInTheDocument();
+      expect(asFragment()).toMatchSnapshot();
+    });
+
+    test("renders correctly with active icon", async () => {
+      const nav: INavMenu = {
+        kind: "nav",
+        icons: [
+          <div key="default">test-default-icon-el</div>,
+          <div key="active">test-active-icon-el</div>,
+        ],
+        to: "/test-url",
+      };
+
+      const { asFragment } = renderWithRouter(menuGenerator(nav, 0), { route: "/test-url" });
+
+      expect(screen.getByTestId("main")).toHaveClass("active");
+      expect(screen.getByTestId("main")).not.toHaveClass("sidebar_hidden_indicator");
+      expect(screen.getByText("test-active-icon-el")).toBeInTheDocument();
+      expect(asFragment()).toMatchSnapshot();
+    });
+
+    test("can not click", async () => {
+      const nav: INavMenu = {
+        kind: "nav",
+        icons: [<div key="default">test-default-icon-el</div>],
+        to: "/test-url",
+      };
+
+      const { user } = renderWithRouter(menuGenerator(nav, 0), { route: "/test-url" });
+
+      await user.click(screen.getByTestId("main"));
+
+      expect(mockNavigate.mock.calls.length).toBe(0);
+    });
+
+    it("matches by pattern", async () => {
+      const nav: INavMenu = {
+        kind: "nav",
+        icons: [<div key="default">test-default-icon-el</div>],
+        to: "/test-url",
+        pattern: "/test-pattern",
+      };
+
+      const { asFragment } = renderWithRouter(menuGenerator(nav, 0), { route: "/test-pattern" });
+
+      expect(screen.getByTestId("main")).toHaveClass("active");
+      expect(screen.getByTestId("main")).not.toHaveClass("sidebar_hidden_indicator");
+      expect(screen.getByText("test-default-icon-el")).toBeInTheDocument();
+      expect(asFragment()).toMatchSnapshot();
+    });
   });
 });

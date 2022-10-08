@@ -59,6 +59,7 @@ function NavMenu({ icons, name = "", to, pattern, component }: INavMenu) {
   return (
     <Tippy content={name} placement="right" disabled={name === ""}>
       <button
+        data-testid="main"
         className={cx(styles.main, {
           [styles.active]: isActive,
           [styles.sidebar_hidden_indicator]: sidebarHiddenIndicator,

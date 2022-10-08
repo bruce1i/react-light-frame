@@ -7,7 +7,8 @@
     "moduleResolution": "nodenext",
     "baseUrl": ".",
     "paths": {
-      "@/*": ["src/*"]
+      "@/*": ["src/*"],
+      "rlf-test-utils": ["tests/__utils__/index"]
     }
   }
 }

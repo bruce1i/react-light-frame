@@ -4,7 +4,7 @@ const config: Config = {
   preset: "ts-jest",
   testEnvironment: "jsdom",
   setupFilesAfterEnv: ["<rootDir>/tests/__setups__/jest-dom-setup.ts"],
-  snapshotResolver: "<rootDir>/tests/__others__/snapshot-resolver.ts",
+  snapshotResolver: "<rootDir>/tests/__resolvers__/snapshot-resolver.ts",
   moduleNameMapper: {
     // mocks
     "\\.(css|scss)$": "<rootDir>/tests/__mocks__/style-mock.cjs",
@@ -12,6 +12,7 @@ const config: Config = {
       "<rootDir>/tests/__mocks__/file-mock.ts",
     // alias
     "@/(.*)": "<rootDir>/src/$1",
+    "rlf-test-utils": "<rootDir>/tests/__utils__/index",
   },
 };
 
