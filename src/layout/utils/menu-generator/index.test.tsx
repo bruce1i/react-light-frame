@@ -1,4 +1,4 @@
-import { render, renderSetup, renderWithRouter, screen } from "rlf-test-utils";
+import { render, renderWithSetup, screen } from "rlf-test-utils";
 
 import type { IIconMenu, IButtonMenu, INavMenu } from "@/types/menu";
 
@@ -40,7 +40,7 @@ describe("icon menu", () => {
       icon: <div>test-icon-el</div>,
     };
 
-    const { user } = renderSetup(menuGenerator(icon, 0));
+    const { user } = renderWithSetup(menuGenerator(icon, 0));
 
     expect(screen.queryByText("test-name")).not.toBeInTheDocument();
 
@@ -74,7 +74,7 @@ describe("button menu", () => {
       useClick: () => mockClick,
     };
 
-    const { user } = renderSetup(menuGenerator(button, 0));
+    const { user } = renderWithSetup(menuGenerator(button, 0));
 
     expect(screen.queryByText("test-name")).not.toBeInTheDocument();
 
@@ -91,7 +91,7 @@ describe("button menu", () => {
       useClick: () => mockClick,
     };
 
-    const { user } = renderSetup(menuGenerator(button, 0));
+    const { user } = renderWithSetup(menuGenerator(button, 0));
     await user.click(screen.getByTestId("main"));
 
     expect(mockClick.mock.calls.length).toBe(1);
@@ -107,7 +107,7 @@ describe("nav menu", () => {
       to: "test-url",
     };
 
-    const { user } = renderWithRouter(menuGenerator(nav, 0));
+    const { user } = renderWithSetup(menuGenerator(nav, 0));
 
     expect(screen.queryByText("test-name")).not.toBeInTheDocument();
 
@@ -124,7 +124,7 @@ describe("nav menu", () => {
         to: "/test-url",
       };
 
-      const { asFragment } = renderWithRouter(menuGenerator(nav, 0));
+      const { asFragment } = renderWithSetup(menuGenerator(nav, 0));
 
       expect(screen.getByTestId("main")).not.toHaveClass("active");
       expect(screen.getByTestId("main")).not.toHaveClass("sidebar_hidden_indicator");
@@ -139,7 +139,7 @@ describe("nav menu", () => {
         to: "/test-url",
       };
 
-      const { user } = renderWithRouter(menuGenerator(nav, 0));
+      const { user } = renderWithSetup(menuGenerator(nav, 0));
 
       await user.click(screen.getByTestId("main"));
 
@@ -156,7 +156,7 @@ describe("nav menu", () => {
         to: "/test-url",
       };
 
-      const { asFragment } = renderWithRouter(menuGenerator(nav, 0), { route: "/test-url" });
+      const { asFragment } = renderWithSetup(menuGenerator(nav, 0), { route: "/test-url" });
 
       expect(screen.getByTestId("main")).toHaveClass("active");
       expect(screen.getByTestId("main")).not.toHaveClass("sidebar_hidden_indicator");
@@ -174,7 +174,7 @@ describe("nav menu", () => {
         to: "/test-url",
       };
 
-      const { asFragment } = renderWithRouter(menuGenerator(nav, 0), { route: "/test-url" });
+      const { asFragment } = renderWithSetup(menuGenerator(nav, 0), { route: "/test-url" });
 
       expect(screen.getByTestId("main")).toHaveClass("active");
       expect(screen.getByTestId("main")).not.toHaveClass("sidebar_hidden_indicator");
@@ -189,7 +189,7 @@ describe("nav menu", () => {
         to: "/test-url",
       };
 
-      const { user } = renderWithRouter(menuGenerator(nav, 0), { route: "/test-url" });
+      const { user } = renderWithSetup(menuGenerator(nav, 0), { route: "/test-url" });
 
       await user.click(screen.getByTestId("main"));
 
@@ -204,12 +204,30 @@ describe("nav menu", () => {
         pattern: "/test-pattern",
       };
 
-      const { asFragment } = renderWithRouter(menuGenerator(nav, 0), { route: "/test-pattern" });
+      const { asFragment } = renderWithSetup(menuGenerator(nav, 0), { route: "/test-pattern" });
 
       expect(screen.getByTestId("main")).toHaveClass("active");
       expect(screen.getByTestId("main")).not.toHaveClass("sidebar_hidden_indicator");
       expect(screen.getByText("test-default-icon-el")).toBeInTheDocument();
       expect(asFragment()).toMatchSnapshot();
+    });
+
+    test("the sidebar can be switched", async () => {
+      const nav: INavMenu = {
+        kind: "nav",
+        icons: [<div key="default">test-default-icon-el</div>],
+        to: "/test-url",
+        component: <div>test-sidebar-com</div>,
+      };
+
+      const { user } = renderWithSetup(menuGenerator(nav, 0), { route: "/test-url" });
+      const mainDom = screen.getByTestId("main");
+
+      expect(mainDom).not.toHaveClass("sidebar_hidden_indicator");
+
+      await user.click(mainDom);
+
+      expect(mainDom).toHaveClass("sidebar_hidden_indicator");
     });
   });
 });
