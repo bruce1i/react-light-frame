@@ -39,19 +39,6 @@ exports[`nav menu when menu is active matches by pattern 1`] = `
 </DocumentFragment>
 `;
 
-exports[`nav menu when menu is active renders correctly 1`] = `
-<DocumentFragment>
-  <button
-    class="main active"
-    data-testid="main"
-  >
-    <div>
-      test-default-icon-el
-    </div>
-  </button>
-</DocumentFragment>
-`;
-
 exports[`nav menu when menu is active renders correctly with active icon 1`] = `
 <DocumentFragment>
   <button
