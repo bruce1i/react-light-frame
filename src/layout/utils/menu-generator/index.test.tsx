@@ -1,8 +1,8 @@
-import { render, renderSetup, screen } from "rlf-test-utils";
+import { render, renderSetup, renderHookSetup, screen } from "rlf-test-utils";
 
-import type { IIconMenu, IButtonMenu, INavMenu } from "@/types/menu";
+import type { IIconMenu, IButtonMenu, INavMenu, TMenu } from "@/types/menu";
 
-import { menuGenerator } from "./index";
+import { menuGenerator, useMenuSidebar } from "./index";
 
 const mockNavigate = jest.fn();
 
@@ -229,5 +229,51 @@ describe("nav menu", () => {
 
       expect(mainDom).toHaveClass("sidebar_hidden_indicator");
     });
+  });
+});
+
+describe("useMenuSidebar", () => {
+  const initMenus: TMenu[] = [
+    {
+      kind: "icon",
+      icon: <div>test-icon-el</div>,
+    },
+    {
+      kind: "nav",
+      icons: [<div key="default">test-default-icon-el</div>],
+      to: "/test-url",
+      component: <div>test-sidebar-com</div>,
+    },
+    {
+      kind: "nav",
+      icons: [<div key="default">test-default-icon-el</div>],
+      to: "/test-no-component-url",
+    },
+  ];
+
+  test("should return sidebar component if NavMenu is matched", () => {
+    const { result } = renderHookSetup((menus) => useMenuSidebar(menus), {
+      initialProps: initMenus,
+      route: "/test-url",
+    });
+
+    expect(result.current).toEqual(<div>test-sidebar-com</div>);
+  });
+
+  test("should return undefined if NavMenu is matched without component", () => {
+    const { result } = renderHookSetup((menus) => useMenuSidebar(menus), {
+      initialProps: initMenus,
+      route: "/test-no-component-url",
+    });
+
+    expect(result.current).toBeUndefined();
+  });
+
+  test("should return null if no NavMenu is matched ", () => {
+    const { result } = renderHookSetup((menus) => useMenuSidebar(menus), {
+      initialProps: initMenus,
+    });
+
+    expect(result.current).toBeNull();
   });
 });

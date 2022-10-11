@@ -1,5 +1,5 @@
-import { render } from "@testing-library/react";
-import type { RenderOptions } from "@testing-library/react";
+import { render, renderHook } from "@testing-library/react";
+import type { RenderOptions, RenderHookOptions, RenderHookResult } from "@testing-library/react";
 import userEvent from "@testing-library/user-event";
 import { RouterProvider, createBrowserRouter } from "react-router-dom";
 import { Provider } from "jotai";
@@ -37,4 +37,16 @@ export function renderSetup(
       ...options,
     }),
   };
+}
+
+export function renderHookSetup<Result, Props>(
+  render: (initialProps: Props) => Result,
+  options: Omit<RenderHookOptions<Props>, "wrapper"> & Omit<ProviderProps, "children"> = {},
+): RenderHookResult<Result, Props> {
+  const { route, initialAtoms } = options;
+
+  return renderHook(render, {
+    wrapper: (props) => <AllTheProviders {...props} route={route} initialAtoms={initialAtoms} />,
+    ...options,
+  });
 }
