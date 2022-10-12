@@ -9,6 +9,7 @@
     "build:test": "npm run clean && cross-env NODE_ENV=test parcel build --no-cache",
     "debug-server": "http-server ./dist -o -a localhost --proxy http://localhost:8080?",
     "test": "jest",
+    "test:coverage": "jest --coverage",
     "test:updateSnapshot": "jest --updateSnapshot",
     "lint": "eslint --ext .ts,.tsx ./src",
     "lint:fix": "eslint --fix --ext .ts,.tsx ./src",

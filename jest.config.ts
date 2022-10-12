@@ -14,6 +14,14 @@ const config: Config = {
     "@/(.*)": "<rootDir>/src/$1",
     "rlf-test-utils": "<rootDir>/tests/__utils__/index",
   },
+  collectCoverageFrom: [
+    "src/**",
+    "!**/*.snap",
+    "!src/*",
+    "!src/menus/**",
+    "!src/types/**",
+    "!src/utils/index.ts",
+  ],
 };
 
 export default config;

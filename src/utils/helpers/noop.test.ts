@@ -1,5 +1,6 @@
 import { noop } from "./noop";
 
 test("calls a noop function", () => {
-  expect(noop.toString()).toBe("function noop() { }");
+  expect(noop()).toBeUndefined();
+  expect(noop.toString().replace(/\s/g, "")).toBe("functionnoop(){}");
 });
