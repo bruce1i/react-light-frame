@@ -156,7 +156,7 @@ describe("nav menu", () => {
         to: "/test-url",
       };
 
-      const { asFragment } = renderSetup(menuGenerator(nav, 0), { route: "/test-url" });
+      const { asFragment } = renderSetup(menuGenerator(nav, 0), { path: "/test-url" });
 
       expect(screen.getByTestId("main")).toHaveClass("active");
       expect(screen.getByTestId("main")).not.toHaveClass("sidebar_hidden_indicator");
@@ -174,7 +174,7 @@ describe("nav menu", () => {
         to: "/test-url",
       };
 
-      const { asFragment } = renderSetup(menuGenerator(nav, 0), { route: "/test-url" });
+      const { asFragment } = renderSetup(menuGenerator(nav, 0), { path: "/test-url" });
 
       expect(screen.getByTestId("main")).toHaveClass("active");
       expect(screen.getByTestId("main")).not.toHaveClass("sidebar_hidden_indicator");
@@ -189,7 +189,7 @@ describe("nav menu", () => {
         to: "/test-url",
       };
 
-      const { user } = renderSetup(menuGenerator(nav, 0), { route: "/test-url" });
+      const { user } = renderSetup(menuGenerator(nav, 0), { path: "/test-url" });
 
       await user.click(screen.getByTestId("main"));
 
@@ -204,7 +204,7 @@ describe("nav menu", () => {
         pattern: "/test-pattern",
       };
 
-      const { asFragment } = renderSetup(menuGenerator(nav, 0), { route: "/test-pattern" });
+      const { asFragment } = renderSetup(menuGenerator(nav, 0), { path: "/test-pattern" });
 
       expect(screen.getByTestId("main")).toHaveClass("active");
       expect(screen.getByTestId("main")).not.toHaveClass("sidebar_hidden_indicator");
@@ -220,7 +220,7 @@ describe("nav menu", () => {
         component: <div>test-sidebar-com</div>,
       };
 
-      const { user } = renderSetup(menuGenerator(nav, 0), { route: "/test-url" });
+      const { user } = renderSetup(menuGenerator(nav, 0), { path: "/test-url" });
       const mainDom = screen.getByTestId("main");
 
       expect(mainDom).not.toHaveClass("sidebar_hidden_indicator");
@@ -254,7 +254,7 @@ describe("useMenuSidebar", () => {
   test("should return sidebar component if NavMenu is matched", () => {
     const { result } = renderHookSetup((menus) => useMenuSidebar(menus), {
       initialProps: initMenus,
-      route: "/test-url",
+      path: "/test-url",
     });
 
     expect(result.current).toEqual(<div>test-sidebar-com</div>);
@@ -263,7 +263,7 @@ describe("useMenuSidebar", () => {
   test("should return undefined if NavMenu is matched without component", () => {
     const { result } = renderHookSetup((menus) => useMenuSidebar(menus), {
       initialProps: initMenus,
-      route: "/test-no-component-url",
+      path: "/test-no-component-url",
     });
 
     expect(result.current).toBeUndefined();

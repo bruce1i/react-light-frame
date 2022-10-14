@@ -6,15 +6,15 @@ import { Provider } from "jotai";
 
 type ProviderProps = {
   children: JSX.Element;
-  route?: string;
+  path?: string;
   // eslint-disable-next-line @typescript-eslint/no-explicit-any
   initialAtoms?: Iterable<[any, any]>;
 };
 
 function AllTheProviders(props: ProviderProps) {
-  const { route = "/", initialAtoms = [], children } = props;
+  const { path = "/", initialAtoms = [], children } = props;
 
-  history.pushState({}, "", route);
+  history.pushState({}, "", path);
   const router = createBrowserRouter([{ path: "*", element: children }]);
 
   return (
@@ -28,12 +28,12 @@ export function renderSetup(
   ui: JSX.Element,
   options: Omit<RenderOptions, "wrapper"> & Omit<ProviderProps, "children"> = {},
 ) {
-  const { route, initialAtoms } = options;
+  const { path, initialAtoms } = options;
 
   return {
     user: userEvent.setup(),
     ...render(ui, {
-      wrapper: (props) => <AllTheProviders {...props} route={route} initialAtoms={initialAtoms} />,
+      wrapper: (props) => <AllTheProviders {...props} path={path} initialAtoms={initialAtoms} />,
       ...options,
     }),
   };
@@ -43,10 +43,10 @@ export function renderHookSetup<Result, Props>(
   render: (initialProps: Props) => Result,
   options: Omit<RenderHookOptions<Props>, "wrapper"> & Omit<ProviderProps, "children"> = {},
 ): RenderHookResult<Result, Props> {
-  const { route, initialAtoms } = options;
+  const { path, initialAtoms } = options;
 
   return renderHook(render, {
-    wrapper: (props) => <AllTheProviders {...props} route={route} initialAtoms={initialAtoms} />,
+    wrapper: (props) => <AllTheProviders {...props} path={path} initialAtoms={initialAtoms} />,
     ...options,
   });
 }
