@@ -137,6 +137,7 @@ describe("nav menu", () => {
         kind: "nav",
         icons: [<div key="default">test-default-icon-el</div>],
         to: "/test-url",
+        component: <div>test-sidebar-com</div>,
       };
 
       const { user } = renderSetup(menuGenerator(nav, 0));
@@ -247,17 +248,33 @@ describe("useMenuSidebar", () => {
     {
       kind: "nav",
       icons: [<div key="default">test-default-icon-el</div>],
+      to: "/test-url",
+      pattern: "/test-pattern",
+      component: <div>test-sidebar-com-by-pattern</div>,
+    },
+    {
+      kind: "nav",
+      icons: [<div key="default">test-default-icon-el</div>],
       to: "/test-no-component-url",
     },
   ];
 
-  test("should return sidebar component if NavMenu is matched", () => {
+  test("should return sidebar component if NavMenu is matched by path", () => {
     const { result } = renderHookSetup((menus) => useMenuSidebar(menus), {
       initialProps: initMenus,
       path: "/test-url",
     });
 
     expect(result.current).toEqual(<div>test-sidebar-com</div>);
+  });
+
+  test("should return sidebar component if NavMenu is matched by pattern", () => {
+    const { result } = renderHookSetup((menus) => useMenuSidebar(menus), {
+      initialProps: initMenus,
+      path: "/test-pattern",
+    });
+
+    expect(result.current).toEqual(<div>test-sidebar-com-by-pattern</div>);
   });
 
   test("should return undefined if NavMenu is matched without component", () => {

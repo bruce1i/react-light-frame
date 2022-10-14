@@ -7,3 +7,9 @@ test("renders correctly", () => {
 
   expect(asFragment()).toMatchSnapshot();
 });
+
+test("renders correctly with sidebar", () => {
+  const { asFragment } = renderSetup(<Layout />, { path: "/demo/puzzle" });
+
+  expect(asFragment()).toMatchSnapshot();
+});
